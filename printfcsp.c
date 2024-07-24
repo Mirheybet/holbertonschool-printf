@@ -9,42 +9,29 @@
 
 int _printf(const char *format, ...)
 {
-	int indexforchars = 0, indexforstrings = 0, sizeofargument = 0;
-	char *varof_args;
+	int indexchar = 0, indexstr = 0, sizeofargument = 0;
+	char *varofargs;
 
 	va_list(args);
 
 	va_start(args, format);
-
-	while (format[indexforchars])
+	while (format[indexchar])
 	{
-		if (format[indexforchars] == '%' && format[indexforchars + 1] == '\0')
+		if (format[indexchar] == '%' && format[indexchar + 1] == '\0')
 			return (-1);
-		else if (format[indexforchars] == '%' && format[indexforchars + 1] == '%')
+		else if (format[indexchar] == '%' && format[indexchar + 1] == '%')
+			_putchar('%'), sizeofargument++, indexchar += 2;
+		else if (format[indexchar] == '%' && format[indexchar + 1] == 'c')
+			_putchar(va_arg(args, int)), sizeofargument++, indexchar = indexchar + 2;
+		else if (format[indexchar] == '%' && format[indexchar + 1] == 's')
 		{
-			indexforchars++, sizeofargument++, _putchar('%');
-		}
-		else if (format[indexforchars] == '%' && format[indexforchars + 1] == 'c')
-		{
-			indexforchars += 2, sizeofargument++, _putchar(va_arg(args, int));
-		}
-		else if (format[indexforchars] == '%' && format[indexforchars + 1] == 's')
-		{
-			varof_args = va_arg(args, char*);
-			while (format[indexforstrings])
-			{
-				_putchar(varof_args[indexforstrings]);
-				indexforstrings++;
-			}
-			indexforchars += 2;
-			sizeofargument += indexforstrings;
+			varofargs = va_arg(args, char*);
+			while (varofargs[indexstr])
+				_putchar(varofargs[indexstr]), varofargs++;
+			sizeofargument += indexstr, indexchar += 2;
 		}
 		else
-		{
-			_putchar(format[indexforchars]);
-			indexforchars++, sizeofargument++;
-		}
-
+			_putchar(format[indexchar]), indexchar++, sizeofargument++;
 	}
 	va_end(args);
 	return (sizeofargument);
