@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "main.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
 
 /**
  * print_string - This functions is for print of string
