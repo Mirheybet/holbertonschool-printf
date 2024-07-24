@@ -6,16 +6,17 @@
 #include "main.h"
 
 /**
- * print_string - prints string
- * @s: char
- * @z: int
- * Return: letter count
+ * printf_string - This function is for prtinf string
+ * @strsize: integer variable is for string line length
+ * @str: array of char is for input string line
+ * Return: This function returns length of string
  */
-int print_string(int z, char *s)
-{
-	int i = 0;
 
-	if (!s)
+int printf_string(int strsize, char *str)
+{
+	int index = 0;
+
+	if (!str)
 	{
 		_putchar('(');
 		_putchar('n');
@@ -23,108 +24,73 @@ int print_string(int z, char *s)
 		_putchar('l');
 		_putchar('l');
 		_putchar(')');
-		z = z + 6;
+		strsize = strsize + 6;
 	}
 	else
 	{
-		while (*(s + i) != '\0')
+		while (str[index] != '\0')
 		{
-			_putchar(*(s + i));
-			i++;
-			z++;
+			_putchar(str[index]);
+			index++;
+			strsize++;
 		}
 	}
-	return (z);
+	return (strsize);
 }
+
 /**
- * print_char - print char
- * @c: char
- * @z: int
- * Return: letter count
+ * printf_char - This function is for printf char
+ * @charsize: integer variable is for input line length
+ * @charvar: it is char variable for input char element
+ * Return: This function returns size of line
  */
-int print_char(unsigned int z, char c)
+int printf_char(int charsize, char charvar)
 {
-	_putchar(c);
-	z++;
-	return (z);
+	_putchar(charvar);
+	charsize++;
+	return (charsize);
 }
+
 /**
- * print_decimal - print decimal as string
- * @value: First operand
- * Return: 0
+ * _printf - This function is main function
+ * @format: This is first element of variadic function
+ * Return: It returns size of line
  */
-int print_decimal(int value)
-{
-	int i, j;
-	char buffer[1000000];
-	int printed = 0;
-	unsigned int n;
 
-	if (value < 0)
-	{
-		_putchar('-');
-		printed++;
-		n = -value;
-	}
-	else
-	{
-		n = value;
-	}
-
-	i = 0;
-
-	do {
-		buffer[i++] = '0' + (n % 10);
-		n /= 10;
-		printed++;
-	} while (n > 0);
-	for (j = i - 1; j >= 0; j--)
-	{
-		_putchar(buffer[j]);
-	}
-	return (printed);
-}
-/**
- * _printf - print string
- * @format: format
- * Return: letter count
- */
 int _printf(const char *format, ...)
 {
-	va_list ptr;
-	int j = 0, r = 0;
+	va_list(args);
+	
+	int index = 0, size = 0;
 
 	if (format == NULL)
-		exit(98);
-	if (!format)
-		exit(98);
-	if (*format == '%' && *(format + 1) == 0)
-		exit(98);
-	va_start(ptr, format);
-	while (*(format + j))
+		return (-1);
+	if (format[0] == '%' && format[1] == 0)
+		return (-1);
+
+
+	va_start(args, format);
+
+	while (format[index])
 	{
-		if (*(format + j) == '%' && *(format + j + 1) == 'c')
+		if (format[index] == '%' && format[index + 1] == 'c')
 		{
-			r = print_char(r, (char)va_arg(ptr, int)), j += 2;
+			size = printf_char(size, (char)va_arg(args, int)), index += 2;
 		}
-		else if (*(format + j) == '%' && *(format + j + 1) == 's')
+		else if (format[index] == '%' && format[index + 1] == 's')
 		{
-			r = print_string(r, va_arg(ptr, char *)), j += 2;
+			size = printf_string(size, va_arg(args, char *)), index += 2;
 		}
-		else if (*(format + j) == '%' && (*(format + j + 1) == 'd' ||
-		*(format + j + 1) == 'i'))
+		else if (format[index] == '%' && format[index + 1] == '%')
 		{
-			r += print_decimal(va_arg(ptr, int)), j += 2;
-		}
-		else if (*(format + j) == '%' && *(format + j + 1) == '%')
-		{
-			_putchar('%'), r++, j += 2;
+			_putchar('%'), size++, index += 2;
 		}
 		else
 		{
-			r++, _putchar(*(format + j)), j++;
+			size++, _putchar(format[index]), index++;
 		}
 
 	}
-	return (r);
+	va_end(args);
+	return (size);
 }
