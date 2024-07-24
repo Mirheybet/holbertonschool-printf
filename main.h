@@ -3,8 +3,9 @@
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int print_string(int sizestr, char *str);
-int print_char(int sizechar, char varchar);
+int print_string(int z, char *s);
+int print_char(unsigned int z, char c);
+int print_decimal(int value);
 int _printf(const char *format, ...);
 
 #endif

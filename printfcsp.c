@@ -1,22 +1,21 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include "main.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
+#include "main.h"
 
 /**
- * print_string - This functions is for print of string
- * @sizestr: int variable ,  for size
- * @str: array of char variable , for input string
- * Return: size of string
+ * print_string - prints string
+ * @s: char
+ * @z: int
+ * Return: letter count
  */
-
-int print_string(int sizestr, char *str)
+int print_string(int z, char *s)
 {
-	int index = 0;
+	int i = 0;
 
-	if (!str)
+	if (!s)
 	{
 		_putchar('(');
 		_putchar('n');
@@ -24,72 +23,108 @@ int print_string(int sizestr, char *str)
 		_putchar('l');
 		_putchar('l');
 		_putchar(')');
-		sizestr = sizestr + 6;
+		z = z + 6;
 	}
 	else
 	{
-		while (str[index] != '\0')
+		while (*(s + i) != '\0')
 		{
-			_putchar(str[index]);
-			index++;
-			sizestr++;
+			_putchar(*(s + i));
+			i++;
+			z++;
 		}
 	}
-	return (sizestr);
+	return (z);
 }
-
 /**
- * print_char - This function is for printf of char
- * @sizechar: variable of integer ,  for size
- * @varchar: variable of char ,  for input char
- * Return: size of char
+ * print_char - print char
+ * @c: char
+ * @z: int
+ * Return: letter count
  */
-
-int print_char(int sizechar, char varchar)
+int print_char(unsigned int z, char c)
 {
-	_putchar(varchar);
-	sizechar++;
-	return (sizechar);
+	_putchar(c);
+	z++;
+	return (z);
 }
-
 /**
- * _printf - main printf (char , string , percent)
- * @format: variable of char array ,  it is main variable
- * Return: size of main input
+ * print_decimal - print decimal as string
+ * @value: First operand
+ * Return: 0
  */
+int print_decimal(int value)
+{
+	int i, j;
+	char buffer[1000000];
+	int printed = 0;
+	unsigned int n;
 
+	if (value < 0)
+	{
+		_putchar('-');
+		printed++;
+		n = -value;
+	}
+	else
+	{
+		n = value;
+	}
+
+	i = 0;
+
+	do {
+		buffer[i++] = '0' + (n % 10);
+		n /= 10;
+		printed++;
+	} while (n > 0);
+	for (j = i - 1; j >= 0; j--)
+	{
+		_putchar(buffer[j]);
+	}
+	return (printed);
+}
+/**
+ * _printf - print string
+ * @format: format
+ * Return: letter count
+ */
 int _printf(const char *format, ...)
 {
-	va_list(args);
-	int indexelement = 0, size = 0;
+	va_list ptr;
+	int j = 0, r = 0;
 
 	if (format == NULL)
-		return (-1);
+		exit(98);
+	if (!format)
+		exit(98);
 	if (*format == '%' && *(format + 1) == 0)
-		return (-1);
-
-	va_start(args, format);
-
-	while (format[indexelement])
+		exit(98);
+	va_start(ptr, format);
+	while (*(format + j))
 	{
-		if (format[indexelement] == '%' && format[indexelement + 1] == 'c')
+		if (*(format + j) == '%' && *(format + j + 1) == 'c')
 		{
-			size = print_char(size, (char)va_arg(args, int)), indexelement += 2;
+			r = print_char(r, (char)va_arg(ptr, int)), j += 2;
 		}
-		else if (format[indexelement] == '%' && format[indexelement + 1] == 's')
+		else if (*(format + j) == '%' && *(format + j + 1) == 's')
 		{
-			size = print_string(size, va_arg(args, char *)), indexelement += 2;
+			r = print_string(r, va_arg(ptr, char *)), j += 2;
 		}
-		else if (format[indexelement] == '%' && format[indexelement + 1] == '%')
+		else if (*(format + j) == '%' && (*(format + j + 1) == 'd' ||
+		*(format + j + 1) == 'i'))
 		{
-			_putchar('%'), size++, indexelement += 2;
+			r += print_decimal(va_arg(ptr, int)), j += 2;
+		}
+		else if (*(format + j) == '%' && *(format + j + 1) == '%')
+		{
+			_putchar('%'), r++, j += 2;
 		}
 		else
 		{
-			size++, _putchar(format[indexelement]), indexelement++;
+			r++, _putchar(*(format + j)), j++;
 		}
 
 	}
-	va_end(args);
-	return (size);
+	return (r);
 }
