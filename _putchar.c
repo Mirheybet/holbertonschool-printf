@@ -1,9 +1,11 @@
 #include <unistd.h>
+
 /**
  * _putchar - pdshufj sufa iutchar
- * @c: c is
+ * @c: c is variable
  * Return: always 0
  */
+
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
