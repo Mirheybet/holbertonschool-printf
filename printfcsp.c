@@ -7,8 +7,8 @@
 
 /**
  * print_string - This functions is for print of string
- * @sizestr: int variable | for size
- * @str: array of char variable | for input string
+ * @sizestr: int variable ,  for size
+ * @str: array of char variable , for input string
  * Return: size of string
  */
 
@@ -40,8 +40,8 @@ int print_string(int sizestr, char *str)
 
 /**
  * print_char - This function is for printf of char
- * @sizechar: variable of integer | for size
- * @varchar: variable of char | for input char
+ * @sizechar: variable of integer ,  for size
+ * @varchar: variable of char ,  for input char
  * Return: size of char
  */
 
@@ -54,7 +54,7 @@ int print_char(int sizechar, char varchar)
 
 /**
  * _printf - main printf (char , string , percent)
- * @format: variable of char array | it is main variable
+ * @format: variable of char array ,  it is main variable
  * Return: size of main input
  */
 
