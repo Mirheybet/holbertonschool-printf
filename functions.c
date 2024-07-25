@@ -1,6 +1,8 @@
 #include "unistd.h"
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
+
 /**
  * _putchar- function
  * @c: parameter
