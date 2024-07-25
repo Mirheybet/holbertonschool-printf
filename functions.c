@@ -1,4 +1,5 @@
-#include "unistd.h"
+#include <stdarg.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -40,7 +41,9 @@ int print_str(va_list arg)
 
 	c = va_arg(arg, char *);
 	if (c == NULL)
+	{
 		c = "(null)";
+	}
 
 	while (c[i] != '\0')
 	{

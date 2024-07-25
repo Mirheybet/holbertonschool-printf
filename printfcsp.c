@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 /**
  * _printf - function
  * @format: pointer
@@ -24,12 +22,18 @@ int _printf(const char *format, ...)
 			{
 				len = len + print_str(args), i = i + 2;
 			}
-			else if (format[i] == '%' && format[i + 1] == '%')
-				_putchar('%'), len++, i = i + 2;
 			else if (format[i] == '%' && (format[i + 1] == 'd' || format[i + 1] == 'i'))
+			{
 				len = len + print_int(args), i = i + 2;
+			}
+			else if (format[i] == '%' && format[i + 1] == '%')
+			{
+				_putchar('%'), len++, i = i + 2;
+			}
 			else
+			{
 				_putchar(format[i]), i++, len++;
+			}
 		}
 	}
 	va_end(args);
