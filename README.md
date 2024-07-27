@@ -27,10 +27,11 @@ How to install and compile?
 Sample main program :
 int main(void)
 {
-	_printf("%s %c %d", "Hello, Holberton!", "H", 100);
+	_printf("%s %c %d", "Hello, Holberton!", "H", 1234);
 	return (0);
 }
 
 For compile : 
->>>gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o printf
->>>./printf
+	>>>gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o printf
+	>>>./printf
+	Hello Holberton! H 1234
