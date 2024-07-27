@@ -23,3 +23,10 @@ Environment
 How to install and compile?
 1)git clone https://github.com/Mirheybet/holbertonschool-printf.git
 2)cd holberton-printf
+
+Sample main program :
+int main(void)
+{
+	_printf("%s %c %d", "Hello, Holberton!", "H", 100);
+	return (0);
+}
