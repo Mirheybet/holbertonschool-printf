@@ -35,3 +35,8 @@ For compile :
 	>>>gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o printf
 	>>>./printf
 	Hello Holberton! H 1234
+
+Authors:
+MirHeybat Hasanov
+Farid Guliyev
+Vasif Yagubov
