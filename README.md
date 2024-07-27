@@ -19,3 +19,7 @@ Environment
 >>>Style : Betty style
 >>>Compiler : gcc 11.4.0
 >>>Sandbox: Ubuntu 22.04 Paris
+
+How to install and compile?
+1)git clone https://github.com/Mirheybet/holbertonschool-printf.git
+2)cd holberton-printf
