@@ -30,3 +30,7 @@ int main(void)
 	_printf("%s %c %d", "Hello, Holberton!", "H", 100);
 	return (0);
 }
+
+For compile : 
+>>>gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o printf
+>>>./printf
