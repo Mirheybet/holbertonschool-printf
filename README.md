@@ -9,3 +9,7 @@ printf()
 For files' description:
 |main.h - it is main file of project
 |printfcsp.c - this file for custom version of printf
+
+|man_3_printf - this file for details of programs 
+|functions.c - this file catch our program's  functions
+
