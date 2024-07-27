@@ -13,3 +13,9 @@ For files' description:
 |functions.c - this file catch our program's  functions
 |a.out - it was created after compile 
 |main.c - it was created after compile
+
+Environment 
+>>>Language : C
+>>>Style : Betty style
+>>>Compiler : gcc 11.4.0
+>>>Sandbox: Ubuntu 22.04 Paris
