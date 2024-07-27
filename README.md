@@ -12,4 +12,5 @@ For files' description:
 
 |man_3_printf - this file for details of programs 
 |functions.c - this file catch our program's  functions
-
+| a.out - it was created after compile 
+| main.c - it was created after compile
